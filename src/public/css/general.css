@@ -1,0 +1,41 @@
+.main_icons{
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.unbullet_list{
+    list-style-type: none;
+}
+
+.menu_element{
+    min-height: 205px;
+    cursor: pointer;
+}
+
+.widther{
+    max-width: 600px;
+}
+
+.mouser{
+    cursor: pointer;
+}
+
+.h-divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid #d1d1d1;
+}
+
+.v-divider {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #d1d1d1;
+}
+
+.text-small{
+    font-size: small;
+}

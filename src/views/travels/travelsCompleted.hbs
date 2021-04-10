@@ -1,0 +1,56 @@
+<script>
+    logVerify();
+</script>
+{{>content-wrapper-start}}
+<!-- Main Content -->
+<div class="content h-100">
+    {{>navtop}}
+    <div class="container-fluid widther">
+        <!-- Page Heading -->
+        <center>
+            <h5 class="h5 text-secondary"><b>Viajes en proceso</b></h5>
+        </center>
+
+        {{#if tripsCompleteds}}
+        {{#each tripsCompleteds}}
+        <div class="row" style="font-size: small;">
+            <a style="width: 100%;" onclick="goToAgentsToTravelCompleteds({{tripId}})" class="mouser">
+                <div class="card shadow-lg mb-2 p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col col-sm">
+                                <p><i class="fa fa-hashtag"></i> <b>Código:</b> {{tripId}}</p>
+                                <p><i class="fa fa-calendar"></i> <b>Fecha:</b> {{Fecha}}</p>
+                                <p><i class="fa fa-building"></i> <b>Empresa:</b> {{Empresa}}</p>
+                            </div>
+                            <div class="col col-sm">
+                                <p><i class="fa fa-suitcase-rolling"></i> <b>Tipo:</b> {{Tipo}}</p>
+                                <p><i class="fa fa-clock"></i> <b>Hora:</b> {{Hora}}</p>
+                                <p><i class="fa fa-users"></i> <b>Agentes:</b> {{Agentes}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="row">
+            <a class="col">
+                <div class="card shadow m-4">
+                    <div class="card-body text-center">
+                        <h5>No hay viajes completados</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/if}}
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->
+
+{{>footer}}
+
+<!-- end of main content -->
+{{>content-wrapper-end}}

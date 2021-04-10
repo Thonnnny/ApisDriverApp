@@ -1,0 +1,41 @@
+<script>sessionVerify();</script>
+{{>content-wrapper-start}}
+<!-- Main Content -->
+<div class="content h-100">
+    <div class="container-fluid h-100">
+        <!-- Outer Row -->
+        <div class="row justify-content-center" style="height: 100vh;">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-sm-12 align-self-center">
+                    <div class="p-3 shadow-lg">
+                        <div class="text-center">
+                            <center>
+                                <h2 class="h2 text-gray mb-3"><b>SMART DRIVER</b></h2>
+                                <img src="/img/world.png" width="300px">
+                                <p>&nbsp;</p>
+                            </center>
+                        </div>
+                        <div class="user">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="inputDriverDNI"
+                                    placeholder="Número de identidad">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-user" id="inputDriverPassword" placeholder="Contraseña">
+                            </div>
+                            <div class="form-group">
+                                <button onclick="driverLogin()" class="btn btn-success btn-user btn-block">
+                                    Ingresar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- end of main content -->
+{{>content-wrapper-end}}

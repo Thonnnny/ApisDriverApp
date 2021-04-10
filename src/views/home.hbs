@@ -1,0 +1,59 @@
+<script>
+    logVerify();
+</script>
+{{>content-wrapper-start}}
+<!-- Main Content -->
+<div class="content h-100">
+    {{>navtop}}
+    <div class="container-fluid widther">
+        <!-- Page Heading -->
+        <div class="row">
+            <a onclick="goToPendings()" class="col">
+                <div class="card shadow mb-4 menu_element">
+                    <div class="card-body text-center">
+                        <img class="main_icons" src="/img/list.svg">
+                        <br>
+                        Asignar horas a viajes
+                    </div>
+                </div>
+            </a>
+            <a onclick="goToTravelInProgress()" class="col">
+                <div class="card shadow mb-4 menu_element">
+                    <div class="card-body text-center">
+                        <img class="main_icons" src="/img/maps.svg">
+                        <br>
+                        Viajes en proceso
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <a onclick="goToDepartures()" class="col">
+                <div class="card shadow mb-4 menu_element">
+                    <div class="card-body text-center">
+                        <img class="main_icons" src="/img/logout.svg">
+                        <br>
+                        Registrar salida
+                    </div>
+                </div>
+            </a>
+            <a onclick="goToTravelsCompleteds()" class="col">
+                <div class="card shadow mb-4 menu_element">
+                    <div class="card-body text-center">
+                        <img class="main_icons" src="/img/clock.svg">
+                        <br>
+                        Historial de viajes
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+{{>footer}}
+
+<!-- end of main content -->
+{{>content-wrapper-end}}

@@ -1,0 +1,186 @@
+<script>
+    logVerify();
+</script>
+{{>content-wrapper-start}}
+<!-- Main Content -->
+<div class="content h-100">
+    {{>navtop}}
+    <div class="container-fluid widther">
+        <center>
+            <h5 style="h5 mt-1"><b>Viaje programado</b></h5>
+        </center>
+        <h6 style="h6 mt-1"><b>Detalles del viaje</b></h6>
+        {{#if actualTrip}}
+        <div class="row" style="font-size: small;">
+            <div style="width: 100%;">
+                <div class="card shadow-lg mb-2 p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col col-sm">
+                                <p><i class="fa fa-hashtag"></i> <b>Código:</b> {{actualTrip.tripId}}</p>
+                                <p><i class="fa fa-calendar"></i> <b>Fecha:</b> {{actualTrip.tripDate}}</p>
+                                <p><i class="fa fa-building"></i> <b>Empresa:</b> {{actualTrip.companyName}}</p>
+                            </div>
+                            <div class="col col-sm">
+                                <p><i class="fa fa-suitcase-rolling"></i> <b>Tipo:</b> {{actualTrip.tripType}}</p>
+                                <p><i class="fa fa-clock"></i> <b>Hora:</b> {{actualTrip.tripHour}}</p>
+                                <p><i class="fa fa-users"></i> <b>Agentes:</b> {{actualTrip.totalAgents}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        <center>
+            <h6 class="mt-2"><b>Debe asignar hora a los siguientes agentes</b></h6>
+        </center>
+        <!-- Page Heading -->
+
+        <!-- Agents confirmed -->
+        {{#if agents}}
+        <h6 style="h6 mt-4 mb-1"><b>Agentes confirmados</b></h6>
+        {{#each agents}}
+        <div class="row mb-2" style="font-size: small;">
+            <div id="accordion" style="width: 100%;">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-white" id="heading{{agentId}}" class="btn btn-link"
+                        data-toggle="collapse" data-target="#collapse{{agentId}}" aria-expanded="true"
+                        aria-controls="collapse{{agentId}}">
+                        <p><i class="fa fa-building"></i> <b>Empresa:</b> {{companyName}}</p>
+                        <p><i class="fa fa-user"></i> <b>Nombre:</b> {{agentFullname}}</p>
+                        <p><i class="fa fa-phone"></i> <b>Teléfono:</b> {{agentPhone}} &emsp;<i class="fa fa-clock"></i> <b>Entrada:</b> {{hourIn}}</p>
+                    </div>
+                    <div id="collapse{{agentId}}" class="collapse show bg-light" aria-labelledby="headingOne"
+                        data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <i class="fa fa-map-marker-alt"></i> <b>Dirección:</b> {{agentReferencePoint}}, {{neighborhoodName}},
+                            {{townName}}
+                        </div>
+                        <center>
+                            <div class="form-group text-center" style="font-size: small; width: 40%;">
+                                <label for="tripHour">Hora de encuentro:</label>
+                                <input class="form-control" type="time" name="tripHour" id="timeToAboard{{agentId}}"
+                                    onchange="setTime({{agentId}}, {{tripId}})" value="{{hourForTrip}}">
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="row">
+            <div id="accordion" style="width: 100%;">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h6>No hay agentes confirmados para este viaje</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        <!-- End agents confirmed -->
+
+
+        <!-- Agents not confirmed-->
+        {{#if agentsNotConfirmed}}
+        <h6 style="h6 mt-4 mb-1"><b>Agentes no confirmados</b></h6>
+        {{#each agentsNotConfirmed}}
+        <div class="row mb-3" style="font-size: small;">
+            <div id="accordion" style="width: 100%;">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-white" id="heading{{agentId}}" class="btn btn-link"
+                        data-toggle="collapse" data-target="#collapse{{agentId}}" aria-expanded="true"
+                        aria-controls="collapse{{agentId}}">
+                        <p><i class="fa fa-building"></i> <b>Empresa:</b> {{companyName}}</p>
+                        <p><i class="fa fa-user"></i> <b>Nombre:</b> {{agentFullname}}</p>
+                        <p><i class="fa fa-phone"></i> <b>Teléfono:</b> {{agentPhone}} &emsp;<i class="fa fa-clock"></i> <b>Entrada:</b> {{hourIn}}</p>
+                    </div>
+                    <div id="collapse{{agentId}}" class="collapse show bg-light" aria-labelledby="headingOne"
+                        data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <i class="fa fa-map-marker-alt"></i> <b>Dirección:</b> {{agentReferencePoint}}, {{neighborhoodName}},
+                            {{townName}}
+                        </div>
+                        <center>
+                            <div class="form-group text-center" style="font-size: small; width: 40%;">
+                                <label for="tripHour">Hora de encuentro:</label>
+                                <input class="form-control" type="time" name="tripHour" id="timeToAboard{{agentId}}"
+                                    onchange="setTime({{agentId}}, {{tripId}})" value="{{hourForTrip}}">
+                            </div>
+                            <button class="m-2 btn btn-sm btn-danger" onclick="notConfirmed({{agentId}}, {{tripId}})">No
+                                confirmó</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="row">
+            <div id="accordion" style="width: 100%;">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h6>No hay agentes no confirmados para este viaje</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        <!-- End agents not confirmed -->
+
+
+        <!-- Agents canceled -->
+        {{#if agentsCanceled}}
+        <h6 style="h6 mt-3 mb-1"><b>Agentes que cancelaron</b></h6>
+        {{#each agentsCanceled}}
+        <div class="row mb-3" style="font-size: small;">
+            <div id="accordion" style="width: 100%;">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-white" id="heading{{agentId}}" class="btn btn-link"
+                        data-toggle="collapse" data-target="#collapse{{agentId}}" aria-expanded="true"
+                        aria-controls="collapse{{agentId}}">
+                        <p><i class="fa fa-building"></i> <b>Empresa:</b> {{companyName}}</p>
+                        <p><i class="fa fa-user"></i> <b>Nombre:</b> {{agentFullname}}</p>
+                        <p><i class="fa fa-phone"></i> <b>Teléfono:</b> {{agentPhone}} &emsp;<i class="fa fa-clock"></i> <b>Entrada:</b> {{hourIn}}</p>
+                    </div>
+                    <div id="collapse{{agentId}}" class="collapse show bg-light" aria-labelledby="headingOne"
+                        data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <i class="fa fa-map-marker-alt"></i> <b>Dirección:</b> {{agentReferencePoint}}, {{neighborhoodName}},
+                            {{townName}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="row">
+            <div id="accordion" style="width: 100%;">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h6>No hay agentes que hayan cancelado este viaje</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        <!-- End agents canceled -->
+
+        <center>
+            <button class="btn btn-sm btn-success m-2 p-2" onclick="passTripToProgress({{actualTrip.tripId}})">Pasar a viaje en
+                proceso</button>
+            <button class="btn btn-sm btn-danger m-2 p-2" onclick="markAsCanceled({{actualTrip.tripId}})">Marcar como
+                cancelado</button>
+        </center>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->
+
+{{>footer}}
+
+<!-- end of main content -->
+{{>content-wrapper-end}}
